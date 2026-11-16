@@ -25,7 +25,8 @@ def train_model() -> float:
     )
 
     model.fit(Xtrain, ytrain)
-    dump(model, get_model())
+    if get_model().exists():
+        dump(model, get_model())
 
     y_model = model.predict(Xtest)
     return accuracy_score(y_model, ytest)
